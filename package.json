@@ -6,7 +6,7 @@
   "license": "MIT",
   "packageManager": "yarn@3.1.1",
   "scripts": {
-    "build": "tsc src/index.ts --outDir build",
+    "build": "tsc --outDir build",
     "start": "node build/index.js",
     "dev": "ts-node src/index.ts",
     "lint": "eslint . --fix"
@@ -23,5 +23,8 @@
     "prettier": "^2.5.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@slack/bolt": "^3.10.0"
   }
 }
