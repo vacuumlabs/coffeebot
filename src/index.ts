@@ -1,4 +1,8 @@
 import {App} from '@slack/bolt'
+import dotenv from 'dotenv'
+
+// load env vars into process.env
+dotenv.config()
 
 // source: https://slack.dev/bolt-js/tutorial/getting-started#setting-up-your-project
 // Initializes your app with your bot token and signing secret
