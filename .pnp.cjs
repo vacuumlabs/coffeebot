@@ -41,6 +41,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prettier", "npm:2.4.4"],
             ["@typescript-eslint/eslint-plugin", "virtual:a6e97f5cbc858f11500aa8796f1d8a8760a1837fff518318cc282b80eea70e6738f04604ffde61e15616bbd4eb9c93bf08bdba8339caec1bf174a7b9199ba6db#npm:5.12.1"],
             ["@typescript-eslint/parser", "virtual:a6e97f5cbc858f11500aa8796f1d8a8760a1837fff518318cc282b80eea70e6738f04604ffde61e15616bbd4eb9c93bf08bdba8339caec1bf174a7b9199ba6db#npm:5.12.1"],
+            ["dotenv", "npm:16.0.0"],
             ["eslint", "npm:8.9.0"],
             ["eslint-config-prettier", "virtual:a6e97f5cbc858f11500aa8796f1d8a8760a1837fff518318cc282b80eea70e6738f04604ffde61e15616bbd4eb9c93bf08bdba8339caec1bf174a7b9199ba6db#npm:8.4.0"],
             ["eslint-plugin-prettier", "virtual:a6e97f5cbc858f11500aa8796f1d8a8760a1837fff518318cc282b80eea70e6738f04604ffde61e15616bbd4eb9c93bf08bdba8339caec1bf174a7b9199ba6db#npm:4.0.0"],
@@ -952,6 +953,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prettier", "npm:2.4.4"],
             ["@typescript-eslint/eslint-plugin", "virtual:a6e97f5cbc858f11500aa8796f1d8a8760a1837fff518318cc282b80eea70e6738f04604ffde61e15616bbd4eb9c93bf08bdba8339caec1bf174a7b9199ba6db#npm:5.12.1"],
             ["@typescript-eslint/parser", "virtual:a6e97f5cbc858f11500aa8796f1d8a8760a1837fff518318cc282b80eea70e6738f04604ffde61e15616bbd4eb9c93bf08bdba8339caec1bf174a7b9199ba6db#npm:5.12.1"],
+            ["dotenv", "npm:16.0.0"],
             ["eslint", "npm:8.9.0"],
             ["eslint-config-prettier", "virtual:a6e97f5cbc858f11500aa8796f1d8a8760a1837fff518318cc282b80eea70e6738f04604ffde61e15616bbd4eb9c93bf08bdba8339caec1bf174a7b9199ba6db#npm:8.4.0"],
             ["eslint-plugin-prettier", "virtual:a6e97f5cbc858f11500aa8796f1d8a8760a1837fff518318cc282b80eea70e6738f04604ffde61e15616bbd4eb9c93bf08bdba8339caec1bf174a7b9199ba6db#npm:4.0.0"],
@@ -1180,6 +1182,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["doctrine", "npm:3.0.0"],
             ["esutils", "npm:2.0.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["dotenv", [
+        ["npm:16.0.0", {
+          "packageLocation": "./.yarn/cache/dotenv-npm-16.0.0-ef4a5ccded-664cebb51f.zip/node_modules/dotenv/",
+          "packageDependencies": [
+            ["dotenv", "npm:16.0.0"]
           ],
           "linkType": "HARD",
         }]
