@@ -10,7 +10,7 @@
     "start": "node build/index.js",
     "dev": "ts-node src/index.ts",
     "lint": "eslint . --fix",
-    "ngrok": "ngrok http 3000"
+    "ngrok": "$(yarn bin ngrok) http 3000"
   },
   "devDependencies": {
     "@types/eslint": "^8",
