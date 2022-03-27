@@ -7,6 +7,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
+  ignorePatterns: 'build',
   plugins: ['@typescript-eslint/eslint-plugin'],
   extends: [
     // Baseline configurations
