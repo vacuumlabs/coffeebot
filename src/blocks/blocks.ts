@@ -78,7 +78,7 @@ export const getCoffeeBlocks = (state: State): HomeView['blocks'] => [
   ...coffeeBotInfoBlocks,
   getInputBlock({
     block_id: COFFEE_INPUT_BLOCK_ID,
-    text: 'Where do you want the coffee to be delivered to?',
+    text: 'What kind of coffee would you like?',
     action_id: COFFEE_INPUT_ACTION_ID,
   }),
   getActionsBlock({
@@ -106,7 +106,7 @@ export const getLocationBlocks = (state: State): HomeView['blocks'] => [
     elements: [
       getButton({
         action_id: ACTIONS.location_submit,
-        text: 'Small',
+        text: 'Next',
       }),
       CANCEL_BUTTON,
     ],
@@ -133,7 +133,7 @@ export const getConfirmationBlocks = (state: State): HomeView['blocks'] => [
 export const getDoneBlocks = (state: State): HomeView['blocks'] => [
   ...coffeeBotInfoBlocks,
   ...getOrderSummaryBlocks(state),
-  getSectionBlock('Your coffee will arrive shortly. :coffee:'),
+  getSectionBlock('Your coffee will arrive shortly. :coffee: You will be notified when your order gets accepted.'),
   getActionsBlock({
     block_id: STEPS.done,
     elements: [
