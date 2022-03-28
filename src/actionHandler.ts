@@ -1,7 +1,7 @@
-import {App, HomeView, SlackAction} from '@slack/bolt'
+import {App, SlackAction} from '@slack/bolt'
 
-import {getStartBlocks, formatState, getBlocks} from './blocks/blocks'
-import {getActionsBlock, getButton, getSectionBlock} from './blocks/basicBlockHelpers'
+import {getStartBlocks, getBlocks} from './blocks/blocks'
+import {getSectionBlock} from './blocks/basicBlockHelpers'
 
 import {
   ACTIONS,
@@ -13,10 +13,10 @@ import {
   STEPS,
   COFFEE_INPUT_BLOCK_ID,
   COFFEE_INPUT_ACTION_ID,
-  BARISTAS_ID,
 } from './constants'
 import {resetState, State} from './state'
 import {updateHome} from './updateHome'
+import {notifyBaristas} from './notifyBaristas'
 
 export const actionHandler = async (
   client: App['client'],
@@ -61,26 +61,8 @@ export const actionHandler = async (
         body.view?.state?.values[LOCATION_INPUT_BLOCK_ID][LOCATION_INPUT_ACTION_ID].value || 'missing location info'
       break
     case STEPS.confirmation:
-      // notify baristas
-      // TODO: try-catch? elsewhere too?
-      await client.chat.postMessage({
-        channel: BARISTAS_ID,
-        blocks: [
-          getSectionBlock(`New order from <@${userId}>:\n${formatState(state)}`),
-          getActionsBlock({
-            // TODO: handler for this block/action
-            block_id: `baristas-${userId}`,
-            elements: [
-              getButton({
-                action_id: 'accept',
-                text: 'Accept + send notification to the user',
-                // TODO: action value with userId?
-              }),
-              // TODO: dismiss? decline+notification?
-            ],
-          }),
-        ],
-      })
+      // TODO: try-catch?
+      await notifyBaristas(client, userId, state)
       break
   }
 
@@ -89,6 +71,7 @@ export const actionHandler = async (
   // fetch state-based blocks for the new state
   const blocks = getBlocks(state)
 
+  // TODO: try-catch?
   await updateHome(client, userId, blocks)
 
   // post-update side effects
