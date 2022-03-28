@@ -22,10 +22,11 @@ import {
 } from '../constants'
 import {State} from '../state'
 
-export const formatState = ({coffee, location}: State) =>
-  `${coffee ? `Coffee: ${coffee}` : 'missing coffee info'}\n${
-    location ? `Location: ${location}` : 'missing location info'
-  }`
+export const formatStateForBaristas = ({coffee, location}: State) =>
+  `Coffee: ${coffee || '<missing coffee info>'}\nLocation: ${location || '<missing location info>'}`
+
+export const formatStateForSummary = ({coffee, location}: State) =>
+  `Coffee: ${coffee || '<missing coffee info>'}${location ? `\nLocation: ${location}` : ''}`
 
 const CANCEL_BUTTON: Button = getButton({
   action_id: ACTIONS.cancel,
@@ -43,7 +44,7 @@ const coffeeBotInfoBlocks: HomeView['blocks'] = [
 
 const getOrderSummaryBlocks = (state: State): SectionBlock[] => [
   getSectionBlock('*ORDER SUMMARY:*'),
-  getSectionBlock(formatState(state)),
+  getSectionBlock(formatStateForSummary(state)),
 ]
 
 export const getStartBlocks = (error?: boolean): HomeView['blocks'] => [
