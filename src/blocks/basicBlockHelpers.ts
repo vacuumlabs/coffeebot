@@ -73,7 +73,7 @@ export const getInputBlock = ({block_id, text, action_id}: InputInfo): InputBloc
   block_id,
   label: {
     type: 'plain_text',
-    text: 'Where do you want the coffee to be delivered to?',
+    text,
   },
   element: {
     type: 'plain_text_input',
