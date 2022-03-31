@@ -10,7 +10,9 @@ export const notifyBaristas = async (client: App['client'], userId: string, stat
   await client.chat.postMessage({
     channel: BARISTAS_ID,
     blocks: [
-      getSectionBlock(`${notificationText}\n${formatStateForBaristas(state)}`),
+      // the structure here (3 blocks) is important because the data is parsed back later
+      getSectionBlock(notificationText),
+      getSectionBlock(formatStateForBaristas(state)),
       getActionsBlock({
         block_id: `${BARISTAS_BLOCK_ID_PREFIX}${userId}`,
         elements: [
