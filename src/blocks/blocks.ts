@@ -22,10 +22,10 @@ import {
 } from '../constants'
 import {State} from '../state'
 
-export const formatStateForBaristas = ({coffee, location}: State) =>
+export const formatStateForBaristas = ({coffee, location}: Pick<State, 'coffee' | 'location'>) =>
   `Coffee: ${coffee || '<missing coffee info>'}\nLocation: ${location || '<missing location info>'}`
 
-export const formatStateForSummary = ({coffee, location}: State) =>
+export const formatStateForSummary = ({coffee, location}: Pick<State, 'coffee' | 'location'>) =>
   `Coffee: ${coffee || '<missing coffee info>'}${location ? `\nLocation: ${location}` : ''}`
 
 const CANCEL_BUTTON: Button = getButton({
