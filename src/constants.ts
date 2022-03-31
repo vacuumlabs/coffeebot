@@ -37,3 +37,5 @@ export const COFFEE_INPUT_BLOCK_ID = 'coffee_block'
 export const COFFEE_INPUT_ACTION_ID = 'coffee_action'
 export const LOCATION_INPUT_BLOCK_ID = 'location_block'
 export const LOCATION_INPUT_ACTION_ID = 'location_action'
+
+export const BARISTAS_BLOCK_ID_PREFIX = 'baristas-'

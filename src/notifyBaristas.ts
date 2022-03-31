@@ -1,7 +1,7 @@
 import {App} from '@slack/bolt'
 import {getActionsBlock, getButton, getSectionBlock} from './blocks/basicBlockHelpers'
 import {formatStateForBaristas} from './blocks/blocks'
-import {BARISTAS_ID} from './constants'
+import {BARISTAS_BLOCK_ID_PREFIX, BARISTAS_ID} from './constants'
 import {State} from './state'
 
 export const notifyBaristas = async (client: App['client'], userId: string, state: State) => {
@@ -12,8 +12,7 @@ export const notifyBaristas = async (client: App['client'], userId: string, stat
     blocks: [
       getSectionBlock(`${notificationText}\n${formatStateForBaristas(state)}`),
       getActionsBlock({
-        // TODO: handler for this block/action
-        block_id: `baristas-${userId}`,
+        block_id: `${BARISTAS_BLOCK_ID_PREFIX}${userId}`,
         elements: [
           getButton({
             action_id: 'accept',
