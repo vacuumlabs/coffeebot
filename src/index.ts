@@ -1,7 +1,8 @@
 import {App} from '@slack/bolt'
 import dotenv from 'dotenv'
-import {ACTIONS, MANAGERS_ID, Step, STEP_ARRAY} from './constants'
+import {ACTIONS, BARISTAS_BLOCK_ID_PREFIX, MANAGERS_ID, Step, STEP_ARRAY} from './constants'
 import {actionHandler} from './actionHandler'
+import {baristaActionHandler} from './baristaActionHandler'
 import {resetState, usersState} from './state'
 import {getStartBlocks, NON_MANAGER_HOME} from './blocks/blocks'
 import {updateHome} from './updateHome'
@@ -48,9 +49,9 @@ app.event('app_home_opened', async ({event, client}) => {
   }
 })
 
-app.action(/.*/, async ({action, ack, body, client}) => {
+app.action(/.*/, async ({action, ack, respond, body, client}) => {
   try {
-    console.log('action handler', 'user:', body?.user?.id)
+    console.log('action handler', 'user:', body.user.id)
 
     await ack()
 
@@ -62,6 +63,13 @@ app.action(/.*/, async ({action, ack, body, client}) => {
     const actionId = action.action_id
 
     console.log('action handler', 'block_id:', action.block_id, 'action_id:', action.action_id)
+
+    // either a user action or a barista action
+    if (blockId.startsWith(BARISTAS_BLOCK_ID_PREFIX)) {
+      const userIdToNotify = blockId.slice(BARISTAS_BLOCK_ID_PREFIX.length)
+      await baristaActionHandler(client, userIdToNotify, body, respond)
+      return
+    }
 
     const managersResult = await client.conversations.members({channel: MANAGERS_ID})
     const managers = managersResult.members || []
