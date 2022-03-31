@@ -75,7 +75,7 @@ app.action(/.*/, async ({action, ack, body, client}) => {
 
     if (!state) {
       resetState(userId)
-      await updateHome(client, userId, getStartBlocks())
+      await updateHome(client, userId, getStartBlocks(true))
       return
     }
 

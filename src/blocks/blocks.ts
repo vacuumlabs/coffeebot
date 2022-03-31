@@ -155,7 +155,7 @@ export const getDoneBlocks = (state: State): HomeView['blocks'] => [
 export const getBlocks = (state: State): HomeView['blocks'] => {
   switch (state.step) {
     case STEPS.start:
-      return getStartBlocks(state.error)
+      return getStartBlocks()
     case STEPS.coffee:
       return getCoffeeBlocks(state)
     case STEPS.location:

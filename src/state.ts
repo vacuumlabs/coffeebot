@@ -4,7 +4,6 @@ export type State = {
   step: Step
   coffee?: string
   location?: string
-  error?: boolean
 }
 
 // map of users to the state
