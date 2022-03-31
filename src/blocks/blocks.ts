@@ -34,6 +34,12 @@ const CANCEL_BUTTON: Button = getButton({
   style: 'danger',
 })
 
+export const NON_MANAGER_HOME: HomeView['blocks'] = [
+  getSectionBlock(
+    `:mechanic: Sorry, the bot is still in the development. :wrench: Try again later. :coffeeparrot:\nIf you want to know more, contact <@${RISO_ID}>.`,
+  ),
+]
+
 const coffeeBotInfoBlocks: HomeView['blocks'] = [
   getHeaderBlock('CoffeeBot'),
   getSectionBlock('You can order a coffee through this interface and it will be delivered to your desk.'),

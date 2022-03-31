@@ -1,9 +1,9 @@
 import {App} from '@slack/bolt'
 import dotenv from 'dotenv'
-import {ACTIONS, Step, STEP_ARRAY} from './constants'
+import {ACTIONS, MANAGERS_ID, Step, STEP_ARRAY} from './constants'
 import {actionHandler} from './actionHandler'
 import {resetState, usersState} from './state'
-import {getStartBlocks} from './blocks/blocks'
+import {getStartBlocks, NON_MANAGER_HOME} from './blocks/blocks'
 import {updateHome} from './updateHome'
 
 // load env vars into process.env
@@ -25,6 +25,14 @@ app.event('app_home_opened', async ({event, client}) => {
     const tab = event.tab
 
     console.log('app_home_opened', 'user:', userId, 'tab:', tab)
+
+    const managersResult = await client.conversations.members({channel: MANAGERS_ID})
+    const managers = managersResult.members || []
+
+    if (!managers.includes(userId)) {
+      await updateHome(client, userId, NON_MANAGER_HOME)
+      return
+    }
 
     // don't do anything when accessing messages
     if (tab === 'messages') return
@@ -54,6 +62,14 @@ app.action(/.*/, async ({action, ack, body, client}) => {
     const actionId = action.action_id
 
     console.log('action handler', 'block_id:', action.block_id, 'action_id:', action.action_id)
+
+    const managersResult = await client.conversations.members({channel: MANAGERS_ID})
+    const managers = managersResult.members || []
+
+    if (!managers.includes(userId)) {
+      await updateHome(client, userId, NON_MANAGER_HOME)
+      return
+    }
 
     const state = usersState[userId]
 

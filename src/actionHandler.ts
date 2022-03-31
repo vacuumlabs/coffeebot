@@ -1,14 +1,12 @@
 import {App, SlackAction} from '@slack/bolt'
 
 import {getStartBlocks, getBlocks} from './blocks/blocks'
-import {getSectionBlock} from './blocks/basicBlockHelpers'
 
 import {
   ACTIONS,
   FLOW,
   LOCATION_INPUT_ACTION_ID,
   LOCATION_INPUT_BLOCK_ID,
-  RISO_ID,
   Step,
   STEPS,
   COFFEE_INPUT_BLOCK_ID,
@@ -26,16 +24,6 @@ export const actionHandler = async (
   state: State,
   body: SlackAction,
 ) => {
-  // TODO: members of management channel
-  if (userId !== RISO_ID) {
-    await updateHome(client, userId, [
-      getSectionBlock(
-        `:mechanic: Sorry, the bot is still in the development. :wrench: Try again later. :coffeeparrot:\nIf you want to know more, contact <@${RISO_ID}>.`,
-      ),
-    ])
-    return
-  }
-
   if (actionId === ACTIONS.cancel) {
     resetState(userId)
 
